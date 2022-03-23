@@ -1,0 +1,62 @@
+{"net-dev": [
+      {
+        "rxcmp": 0,
+        "txpck": 10353.1,
+        "rxkB": 109996.22,
+        "rxpck": 15006.7,
+        "txcmp": 0,
+        "txkB": 67610.18,
+        "rxmcst": 0,
+        "iface": "samx0"
+      },
+      {
+        "rxcmp": 0,
+        "txpck": 8035.1,
+        "rxkB": 199261.45,
+        "rxpck": 10886.8,
+        "txcmp": 0,
+        "txkB": 126453.46,
+        "rxmcst": 0,
+        "iface": "samx"
+      },
+      {
+        "rxcmp": 0,
+        "txpck": 0,
+        "rxkB": 0,
+        "rxpck": 0,
+        "txcmp": 0,
+        "txkB": 0,
+        "rxmcst": 0,
+        "iface": "lo"
+      },
+      {
+        "rxcmp": 0,
+        "txpck": 9375.6,
+        "rxkB": 90494.87,
+        "rxpck": 12648.8,
+        "txcmp": 0,
+        "txkB": 59596.79,
+        "rxmcst": 0,
+        "iface": "samx1"
+      },
+      {
+        "rxcmp": 0,
+        "txpck": 8033.2,
+        "rxkB": 199260.89,
+        "rxpck": 10884.4,
+        "txcmp": 0,
+        "txkB": 126450.83,
+        "iface": "samx.1013",
+        "rxmcst": 0
+      },
+      {
+        "rxcmp": 0,
+        "txpck": 0,
+        "rxkB": 0,
+        "rxpck": 0,
+        "txcmp": 0,
+        "txkB": 0,
+        "rxmcst": 0,
+        "iface": "docker0"
+      }
+]}

@@ -1,0 +1,16 @@
+def register(params)
+    @field = params['field']
+end
+
+def filter(event)
+  o = event.get(@field)
+#  new={}
+  o.each do |k|
+#    new[k['iface']]=k
+    event.set(k['iface'],k)
+  end
+  event.remove(@field)
+  return [event]
+end
+
+

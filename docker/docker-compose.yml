@@ -1,0 +1,90 @@
+version: '2'
+
+services:
+  elasticsearch:
+    image: docker.io/bitnami/elasticsearch:7
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    volumes:
+      - 'elasticsearch_data:/bitnami/elasticsearch/data'
+    environment:
+      ES_JAVA_OPTS: "-Xms2048m -Xmx2048m"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl http://localhost:9200|grep -q elasticsearch",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+  setup: 
+    image: curlimages/curl
+    command: >
+      -X PUT "elasticsearch:9200/blargh2/?pretty" -H 'Content-Type: application/json' -d' { "mappings": { "dynamic_templates": [ { "float": { "match_mapping_type": "long", "mapping": { "type": "float" } } } ] } }'
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  kibana:
+    image: docker.io/bitnami/kibana:7
+    ports:
+      - "5601:5601"
+    volumes:
+      - "kibana_data:/bitnami/kibana"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.1
+    ports:
+      - 5044:5044
+    volumes:
+      - type: bind
+        source: ./logstash
+        target: /usr/share/logstash/config/
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.1
+    mem_limit: 1G
+    volumes:
+      - type: bind
+        source: /Users/jevouill/filebeat
+        target: /usr/share/filebeat/input
+      - type: bind
+        source: ./filebeat/filebeat.yml
+        target: /usr/share/filebeat/filebeat.yml
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - '3000:3000'
+    volumes:
+      - type: bind
+        source: grafana/datasource.yml
+        target: /etc/grafana/provisioning/datasources/datasource.yml
+      - type: bind
+        source: grafana/dashboard.yml
+        target: /etc/grafana/provisioning/dashboards/dashboard.yml
+      - type: bind
+        source: grafana/dashboard.json
+        target: /etc/dashboards/dashboard.json
+      - type: volume
+        source: grafana-storage
+        target: /var/lib/grafana
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  kibana_data:
+    driver: local
+  grafana-storage:
+    driver: local

@@ -1,0 +1,25 @@
+def register(params)
+    @field = params['field']
+end
+
+def filter(event)
+  o = event.get(@field)
+  temp={}
+  name=""
+  arrayOfEvents = Array.new()
+  timestamp = event.get("timestamp")
+  o.each do |k|
+    k.each do |j,l|
+      if l.is_a? String
+        name=l
+      else
+        temp[j]=l
+      end
+      puts name
+      arrayOfEvents.push({name => temp, "timestamp" => timestamp})
+    end
+  end
+  event.remove(@field)
+  event.set("net-dev",arrayOfEvents)
+  return [event]
+end
