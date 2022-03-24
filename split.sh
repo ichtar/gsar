@@ -1,38 +1,31 @@
 #!/usr/bin/env bash
 
-set -x
+# a script that take sar file as input and output a json file to be slurped by filebeat
+
+#set -x
 
 [[ $1 == "" ]] && exit 1
 [[ -f $1 ]] || exit 1
 
 file=$1
-maxSamples=200
+maxSamples=200 # this generate less than 5M json file, larger make filebeat to choke
 start=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.time)
 end=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[-1].timestamp.time)
 nodename=$(sadf -t -j $file|jq -r .sysstat.hosts[0].nodename)
-filedate=$(sadf -t -j $file|jq -r '.sysstat.hosts[0]."file-date"')
-interval=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[-1].timestamp.interval)
+startDate=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.date)
+endDate=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[-1].timestamp.date)
+interval=$(sadf -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.interval)
+samples=$(sadf -t -j $file|jq -r '.sysstat.hosts[0].statistics|length')
 
-echo $filedate $nodename
-start_ts=$(date -d $start +%s)
-end_ts=$(date -d $end +%s)
-samples=$(( (end_ts-start_ts)/interval ))
-iteration=$(( (samples)/100 ))
-echo $start_ts $end_ts $interval $iteration $samples
+increment=$(( interval * maxSamples))
 
-counter=$start_ts
-if [[ $samples -lt $maxSamples ]]; then
-  delta=$(( interval * samples ))
-else
-  delta=$(( interval * maxSamples ))
-fi
 
-#while [[ $counter -lt $end_ts ]]; do
-for (( c=1; c<=$iteration; c++ ))
-do
-low=$(date -d @$counter '+%H:%M:%S')
-high=$(date -d @$((counter+delta+10)) '+%H:%M:%S')
-echo $low $high
-sadf  -T  -j  $file -- -pbBdFHqrRSuvwWy -m ALL -n ALL -u ALL -P ALL  -s $low -e $high|jq . -c > ${nodename}_${filedate}_$low.json
-counter=$(( counter + delta ))
+start_ts=$(date -d "$start $startDate" +%s)
+end_ts=$(date -d "$end $endDate" +%s)
+
+for (( c=$start_ts; c<$end_ts; c=$((c + increment)) )) ; do
+    low=$(date -d @$c '+%H:%M:%S')
+    fileDate=$(date -d @$c '+%Y%m%d-%H%M%S')
+    high=$(date -d @$((c+increment)) '+%H:%M:%S')
+    sadf  -T  -j  $file -- -pbBdFHqrRSuvwWy -m ALL -n ALL -u ALL -P ALL  -s $low -e $high |jq . -c > ${nodename}_${fileDate}.json
 done
