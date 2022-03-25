@@ -8,7 +8,7 @@ to be consumed by grafana
 # installation
 
 1) create inotify docker container
-````
+```
 cd inotify
 docker build --no-cache . -t inotify:latest
 ```
