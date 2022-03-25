@@ -31,7 +31,7 @@ filebeat.inputs:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /usr/share/filebeat/input/*
+    - /usr/share/filebeat/input/*.json
 
     #- c:\programdata\elasticsearch\logs\*
 
