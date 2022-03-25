@@ -31,3 +31,8 @@ After sometime you should be able to use grafana to see the graphs
 
 4) connect to grafana on localhost:3000 and use sar dashboard
 
+# to do
+
+- a makefile to build docker
+- explanation on how to set TZ in inotify container, currentl using container TZ that is set thru env variable
+- automatic detection of sysstat version (require to have one sadf version compiled per version as conversion is really slow)
