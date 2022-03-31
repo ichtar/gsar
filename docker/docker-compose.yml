@@ -2,19 +2,20 @@ version: '2'
 
 services:
   elasticsearch:
-    image: docker.io/bitnami/elasticsearch:$BITNANIVERSION
+    image: docker.elastic.co/elasticsearch/elasticsearch:$VERSION
     ports:
       - '9200:9200'
       - '9300:9300'
     volumes:
-      - 'elasticsearch_data:/bitnami/elasticsearch/data'
+      - "elasticsearch_data:/usr/share/elasticsearch/data"
     environment:
-      ES_JAVA_OPTS: "-Xms2048m -Xmx2048m"
+      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+      discovery.type: "single-node"
     healthcheck:
       test:
         [
           "CMD-SHELL",
-          "curl http://localhost:9200|grep -q elasticsearch",
+          "curl http://localhost:9200/_cluster/health|grep -q green",
         ]
       interval: 10s
       timeout: 10s
@@ -28,11 +29,11 @@ services:
         condition: service_healthy
 
   kibana:
-    image: docker.io/bitnami/kibana:$BITNANIVERSION
+    image: docker.elastic.co/kibana/kibana:$VERSION
     ports:
       - "5601:5601"
     volumes:
-      - "kibana_data:/bitnami/kibana"
+      - "kibana_data:/usr/share/kibana/config"
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -105,6 +106,19 @@ services:
     depends_on:
       kibana:
         condition: service_healthy
+
+  inotify:
+    image: inotify:latest
+    environment:
+      TZ: "Japan"
+    volumes:
+      - type: bind
+        source: $FILEBEATLOCALFILE
+        target: /input
+    depends_on:
+      kibana:
+        condition: service_healthy
+
 
 volumes:
   elasticsearch_data:
