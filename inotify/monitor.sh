@@ -41,6 +41,9 @@ endDate=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[-1].timestamp.dat
 interval=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.interval)
 samples=$($SADF -t -j $file|jq -r '.sysstat.hosts[0].statistics|length')
 
+
+if $SPLIT; then
+
 if [[ $samples -gt $maxSamples ]]; then
   increment=$(( interval * maxSamples))
 else
@@ -65,10 +68,16 @@ for (( c=$start_ts; c<$end_ts; c=$((c + increment)) )) ; do
     fileDate=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[$currentSample].timestamp.date)
     fileTime=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[$currentSample].timestamp.time)
     echo $SADF  -t  -j  $file -- -bBdHqrRSuvwWy -m ALL -n ALL -u ALL -P ALL  -s $low -e $high
-    $SADF  -t  -j  $file -- -bBdHqrRSuvwWy -m ALL -n ALL -u ALL -P ALL  -s $low -e $high |jq . -c > ${nodename}_${fileDate}_${fileTime}.tmp
+    $SADF  -t  -j  $file -- -A -I SUM  -s $low -e $high |jq . -c > ${nodename}_${fileDate}_${fileTime}.tmp
     mv ${nodename}_${fileDate}_${fileTime}.tmp ${nodename}_${fileDate}_${fileTime}.json
     currentSample=$((currentSample+maxSamples-1))
 done
+else
+    	fileDate=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.date)
+    	fileTime=$($SADF -t -j $file|jq -r .sysstat.hosts[0].statistics[0].timestamp.time)
+	$SADF  -t  -j  $file -- -A -I SUM | jq . -c > ${nodename}_${fileDate}_${fileTime}.tmp
+	mv ${nodename}_${fileDate}_${fileTime}.tmp ${nodename}_${fileDate}_${fileTime}.json
+fi
 rm $file
 }
 
