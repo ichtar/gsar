@@ -15,7 +15,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl http://localhost:9200/_cluster/health|grep -q green",
+          "curl http://localhost:9200/_cluster/health|grep -Eq 'green|yellow'",
         ]
       interval: 10s
       timeout: 10s
@@ -111,6 +111,7 @@ services:
     image: inotify:latest
     environment:
       TZ: "Japan"
+      SPLIT: false
     volumes:
       - type: bind
         source: $FILEBEATLOCALFILE
