@@ -82,6 +82,6 @@ rm $file
 }
 
 
-inotifywait -o output -mde create --excludei '.*\.json|.*\.tmp' /input
+inotifywait -o output -mde attrib --excludei '.*\.json|.*\.tmp' /input
 cd input
 tail -f ../output|awk '{print $NF}'|while read event; do split $event ;done
