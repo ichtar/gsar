@@ -87,7 +87,7 @@ services:
         condition: service_healthy
 
   grafana:
-    image: grafana/grafana-oss
+    image: grafana/grafana-oss:8.3.4
     ports:
       - '3000:3000'
     volumes:
@@ -108,7 +108,7 @@ services:
         condition: service_healthy
 
   inotify:
-    image: inotify:dev
+    image: inotify:latest
     environment:
       TZ: "Japan"
       SPLIT: false
