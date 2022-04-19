@@ -9,7 +9,7 @@ services:
     volumes:
       - "elasticsearch_data:/usr/share/elasticsearch/data"
     environment:
-      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+      ES_JAVA_OPTS: "-Xms4096m -Xmx4096m"
       discovery.type: "single-node"
     healthcheck:
       test:
@@ -108,7 +108,7 @@ services:
         condition: service_healthy
 
   inotify:
-    image: inotify:latest
+    image: inotify:dev
     environment:
       TZ: "Japan"
       SPLIT: false
