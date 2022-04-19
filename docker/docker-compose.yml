@@ -108,10 +108,11 @@ services:
         condition: service_healthy
 
   inotify:
-    image: inotify:latest
+    image: inotify:882833c
     environment:
       TZ: "Japan"
       SPLIT: false
+      MAC: false
     volumes:
       - type: bind
         source: $FILEBEATLOCALFILE

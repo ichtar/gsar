@@ -81,7 +81,10 @@ fi
 rm $file
 }
 
-
-inotifywait -o output -mde attrib --excludei '.*\.json|.*\.tmp' /input
+if $MAC; then
+  inotifywait -o output -mde attrib --excludei '.*\.json|.*\.tmp' /input
+else
+  inotifywait -o output -mde close_write --excludei '.*\.json|.*\.tmp' /input
+fi
 cd input
 tail -0f ../output|awk '{print $NF}'|while read event; do split $event ;done
