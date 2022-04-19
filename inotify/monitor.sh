@@ -84,4 +84,4 @@ rm $file
 
 inotifywait -o output -mde attrib --excludei '.*\.json|.*\.tmp' /input
 cd input
-tail -f ../output|awk '{print $NF}'|while read event; do split $event ;done
+tail -0f ../output|awk '{print $NF}'|while read event; do split $event ;done
