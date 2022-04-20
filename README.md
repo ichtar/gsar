@@ -9,8 +9,7 @@ to be consumed by grafana
 
 1) create inotify docker container
 ```
-cd inotify
-docker build --no-cache . -t inotify:latest
+make
 ```
 
 2) configure input directory for sar files
@@ -33,6 +32,4 @@ After sometime you should be able to use grafana to see the graphs
 
 # to do
 
-- a makefile to build docker
 - explanation on how to set TZ in inotify container, currentl using container TZ that is set thru env variable
-- automatic detection of sysstat version (require to have one sadf version compiled per version as conversion is really slow)
