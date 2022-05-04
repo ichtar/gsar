@@ -21,8 +21,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
-  "iteration": 1646144201437,
+  "iteration": 1651220718333,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -127,159 +126,17 @@
       "type": "timeseries"
     },
     {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
+      "collapsed": false,
       "gridPos": {
-        "h": 24,
-        "w": 23,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 8
       },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "commit {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "host.name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval",
-                "min_doc_count": "0",
-                "timeZone": "utc",
-                "trimEdges": "0"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "memory.commit",
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "host.name.keyword: ${hostname:lucene}",
-          "refId": "A",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "used  {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "host.name.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "memory.memused",
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "host.name.keyword: ${hostname:lucene}",
-          "refId": "B",
-          "timeField": "@timestamp"
-        }
-      ],
-      "title": "Memory Usage",
-      "type": "timeseries"
+      "id": 18,
+      "panels": [],
+      "title": "Disk",
+      "type": "row"
     },
     {
       "fieldConfig": {
@@ -333,368 +190,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 24,
-        "w": 23,
+        "h": 10,
+        "w": 12,
         "x": 0,
-        "y": 32
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "rx {{term net-dev.iface.keyword}}  {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "net-dev.iface.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "host.name.keyword",
-              "id": "5",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval",
-                "min_doc_count": "0",
-                "timeZone": "utc",
-                "trimEdges": "0"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "net-dev.rxkB",
-              "hide": false,
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "net-dev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
-          "refId": "A",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "tx {{term net-dev.iface.keyword}}  {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "net-dev.iface.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "host.name.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "net-dev.txkB",
-              "hide": false,
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "net-dev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
-          "refId": "B",
-          "timeField": "@timestamp"
-        }
-      ],
-      "title": "Network usage",
-      "type": "timeseries"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 24,
-        "w": 23,
-        "x": 0,
-        "y": 56
-      },
-      "id": 6,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "alias": "drop {{term net-edev.iface.keyword}}  {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "net-edev.iface.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "host.name.keyword",
-              "id": "5",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval",
-                "min_doc_count": "0",
-                "timeZone": "utc",
-                "trimEdges": "0"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "net-edev.rxdrop",
-              "hide": false,
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "net-edev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
-          "refId": "A",
-          "timeField": "@timestamp"
-        },
-        {
-          "alias": "error {{term net-edev.iface.keyword}}  {{term host.name.keyword}}",
-          "bucketAggs": [
-            {
-              "field": "net-edev.iface.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "host.name.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "10"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "@timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$interval"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "HnVl8g-7k"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "net-edev.rxerr",
-              "hide": false,
-              "id": "1",
-              "type": "avg"
-            }
-          ],
-          "query": "net-edev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
-          "refId": "B",
-          "timeField": "@timestamp"
-        }
-      ],
-      "title": "Network error",
-      "type": "timeseries"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 24,
-        "w": 23,
-        "x": 0,
-        "y": 80
+        "y": 9
       },
       "id": 7,
       "options": {
@@ -710,7 +209,7 @@
       },
       "targets": [
         {
-          "alias": "await {{term disk.disk-device.keyword}}  {{term host.name.keyword}}",
+          "alias": "{{field}} {{term disk.disk-device.keyword}}  {{term host.name.keyword}}",
           "bucketAggs": [
             {
               "field": "disk.disk-device.keyword",
@@ -764,7 +263,7 @@
           "timeField": "@timestamp"
         }
       ],
-      "title": "disk",
+      "title": "disk await",
       "type": "timeseries"
     },
     {
@@ -819,12 +318,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 24,
-        "w": 23,
-        "x": 0,
-        "y": 104
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 9
       },
-      "id": 8,
+      "id": 19,
       "options": {
         "legend": {
           "calcs": [],
@@ -838,10 +337,10 @@
       },
       "targets": [
         {
-          "alias": "{{term cpu-load-all.cpu.keyword}}  {{term host.name.keyword}}",
+          "alias": "{{field}} {{term disk.disk-device.keyword}}  {{term host.name.keyword}}",
           "bucketAggs": [
             {
-              "field": "cpu-load-all.cpu.keyword",
+              "field": "disk.disk-device.keyword",
               "id": "5",
               "settings": {
                 "min_doc_count": "1",
@@ -881,25 +380,966 @@
           "hide": false,
           "metrics": [
             {
-              "field": "cpu-load-all.idle",
+              "field": "disk.avgrq-sz",
               "hide": false,
               "id": "1",
-              "settings": {
-                "script": "100-_value"
-              },
               "type": "avg"
             }
           ],
-          "query": "cpu-load-all.cpu.keyword:${cpu:lucene} AND host.name.keyword:${hostname:lucene} ",
+          "query": "disk.disk-device.keyword:${disk:lucene} AND host.name.keyword:${hostname:lucene} ",
           "refId": "A",
           "timeField": "@timestamp"
         }
       ],
-      "title": "cpu",
+      "title": "disk avgrq",
       "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "{{field}}  {{term disk.disk-device.keyword}}  {{term host.name.keyword}}",
+          "bucketAggs": [
+            {
+              "field": "disk.disk-device.keyword",
+              "id": "5",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "20"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "host.name.keyword",
+              "id": "6",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$interval",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "HnVl8g-7k"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "disk.wr_sec",
+              "hide": false,
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "disk.disk-device.keyword:${disk:lucene} AND host.name.keyword:${hostname:lucene} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "disk wr/s",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "{{field}} {{term disk.disk-device.keyword}}  {{term host.name.keyword}}",
+          "bucketAggs": [
+            {
+              "field": "disk.disk-device.keyword",
+              "id": "5",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "20"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "host.name.keyword",
+              "id": "6",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$interval",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "HnVl8g-7k"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "disk.rd_sec",
+              "hide": false,
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "disk.disk-device.keyword:${disk:lucene} AND host.name.keyword:${hostname:lucene} ",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "disk rd/s",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 16,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 24,
+            "w": 23,
+            "x": 0,
+            "y": 30
+          },
+          "id": 8,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "{{term cpu-load-all.cpu.keyword}}  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "cpu-load-all.cpu.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "20"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "host.name.keyword",
+                  "id": "6",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval",
+                    "min_doc_count": "0",
+                    "timeZone": "utc",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "cpu-load-all.idle",
+                  "hide": false,
+                  "id": "1",
+                  "settings": {
+                    "script": "100-_value"
+                  },
+                  "type": "avg"
+                }
+              ],
+              "query": "cpu-load-all.cpu.keyword:${cpu:lucene} AND host.name.keyword:${hostname:lucene} ",
+              "refId": "A",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "cpu",
+          "type": "timeseries"
+        }
+      ],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 12,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "deckbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 24,
+            "w": 23,
+            "x": 0,
+            "y": 55
+          },
+          "id": 2,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "commit {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "host.name.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval",
+                    "min_doc_count": "0",
+                    "timeZone": "utc",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "memory.commit",
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "host.name.keyword: ${hostname:lucene}",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "used  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "host.name.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "memory.memused",
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "host.name.keyword: ${hostname:lucene}",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Memory Usage",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Memory",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 10,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 24,
+            "w": 23,
+            "x": 0,
+            "y": 80
+          },
+          "id": 5,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "rx {{term net-dev.iface.keyword}}  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "net-dev.iface.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "host.name.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval",
+                    "min_doc_count": "0",
+                    "timeZone": "utc",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "net-dev.rxkB",
+                  "hide": false,
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "net-dev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "tx {{term net-dev.iface.keyword}}  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "net-dev.iface.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "host.name.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "net-dev.txkB",
+                  "hide": false,
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "net-dev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Network usage",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 24,
+            "w": 23,
+            "x": 0,
+            "y": 104
+          },
+          "id": 6,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "drop {{term net-edev.iface.keyword}}  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "net-edev.iface.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "host.name.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval",
+                    "min_doc_count": "0",
+                    "timeZone": "utc",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "net-edev.rxdrop",
+                  "hide": false,
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "net-edev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
+              "refId": "A",
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "error {{term net-edev.iface.keyword}}  {{term host.name.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "net-edev.iface.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "host.name.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$interval"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "HnVl8g-7k"
+              },
+              "hide": true,
+              "metrics": [
+                {
+                  "field": "net-edev.rxerr",
+                  "hide": false,
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "net-edev.iface.keyword:${nic:lucene} AND host.name.keyword:${hostname:lucene} ",
+              "refId": "B",
+              "timeField": "@timestamp"
+            }
+          ],
+          "title": "Network error",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Network",
+      "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -908,13 +1348,9 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
-          "text": [
-            "snni2"
-          ],
-          "value": [
-            "snni2"
-          ]
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"host.name.keyword\"}",
         "hide": 0,
@@ -1052,13 +1488,13 @@
             "$__all"
           ]
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"net-dev.iface.keyword\",\"query\":\"sam* OR br*\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"net-dev.iface.keyword\"}",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "nic",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"net-dev.iface.keyword\",\"query\":\"sam* OR br*\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"net-dev.iface.keyword\"}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1121,6 +1557,6 @@
   "timezone": "",
   "title": "SAR",
   "uid": "3JsbSf-7k",
-  "version": 47,
+  "version": 1,
   "weekStart": ""
 }
