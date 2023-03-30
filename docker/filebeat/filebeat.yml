@@ -22,7 +22,15 @@ filebeat.inputs:
 - type: log
   json.keys_under_root: true
   json.overwrite_keys: true
-    #  harvester_limit: 
+  close_inactive: "1m"
+  scan_frequency: "10s"
+  close_renamed: true
+  close_removed: true
+  close_eof: true
+  clean_inactive: "2h"
+  clean_remove: true
+  ignore_older: "1h"
+    #harvester_limit: 1
     #  json.expand_keys: true
     #  json.message_key: "sysstat"
 
